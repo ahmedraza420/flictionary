@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* width */
+.scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+.scrollbar::-webkit-scrollbar-track {
+    background: #222222;
+    border-radius: 5px;
+}
+
+/* Handle */
+.scrollbar::-webkit-scrollbar-thumb {
+    background: #5d5d5d;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+.scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #4c4c4c;
+}
+
+@keyframes scrollAppear {
+    from {
+        opacity: 0;
+        scale: 0.75;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .animscroll {
+        opacity: 0;
+        scale: 0.75;
+        animation: scrollAppear linear;
+        animation-timeline: view();
+        animation-range: entry 30% cover 35%;
+        animation-fill-mode: forwards;
+    }
+
+}

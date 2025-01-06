@@ -6,6 +6,7 @@ import Base from './components/base/Base';
 import Home from './pages/home/Home';
 import Search from './pages/search/Search';
 import Detail from './pages/detail/Detail';
+import Discover from './pages/discover/Discover';
 
 const darkTheme = createTheme({
   palette: {
@@ -26,8 +27,9 @@ const router = createBrowserRouter([{
   element: <Base />,
   children: [
     {path: '', element: <Home />},
+    {path: '/discover/:type', element: <Discover />},
     {path: '/search/:query', element: <Search />},
-    {path: '/detail/:id', element: <Detail />}
+    {path: '/:type/:id', element: <Detail />}
   ]
 }])
 

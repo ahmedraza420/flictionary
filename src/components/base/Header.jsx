@@ -6,7 +6,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MailOutlineIcon from '@mui/icons-material/Mail';
 import NotificationsNoneIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const menuItems = ['Movies', 'TV Shows',]
@@ -162,15 +162,17 @@ export default function Header() {
                         <MenuIcon />
 
                     </IconButton> */}
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ fontWeight: 1000, letterSpacing: 1, display: { xs: 'none', sm: 'block' } }}
-                        className="text-teal-400"
-                    >
-                        Flicktionary
-                    </Typography>
+                    <Link to='/'>
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            component="div"
+                            sx={{ fontWeight: 1000, letterSpacing: 1, display: { xs: 'none', sm: 'block' } }}
+                            className="text-teal-400"
+                        >
+                            Flicktionary
+                        </Typography>
+                    </Link>
                     <div className="flex-1 md:hidden" />
                     <div className="hidden md:flex flex-1">
                         {menuItems.map((page) => (
@@ -205,16 +207,17 @@ export default function Header() {
                             <AccountCircleIcon />
                         </IconButton>
                     </div>
-                    <Search onChange={(e) => e.target.value.trim() ? navigate(`/search/${e.target.value}`) : navigate('/')} >
-                        <SearchIconWrapper>
-                            {/* <SearchIcon /> */}
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
+                    <form onSubmit={(e) => {e.preventDefault(); e.target.search.value.trim() ? navigate(`/search/${e.target.search.value}`) : navigate('/')} }>
+                        <Search onChange={(e) => e.target.value.trim() ? null : navigate('/')}>
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search', 'name': 'search' }}
+                                />
+                        </Search>
+                    </form>
                     <div className="flex md:hidden">
                         <IconButton
                             size="large"
